@@ -1,0 +1,15 @@
+
+{% extends "core/base_unauthenticated.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>Are you sure you want to delete your account?</h2>
+    <p>This action is irreversible, and all your data will be lost.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Yes, delete my account</button>
+      <a href="{% url 'accounts:profile' user.profile.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

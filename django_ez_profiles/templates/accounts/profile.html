@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+
+{% extends "core/base_authenticated.html" %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Profile</h2>
+        </div>
+  
+        <div class="card-body">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">First Name: {{ user.first_name }}</p>
+            <p class="card-text">Last Name: {{ user.last_name }}</p>
+            <p class="card-text">Date Joined: {{ user.date_joined }}</p>
+        </div>
+
+        <div class="card-footer text-center">
+            <a class="btn btn-primary" href="{% url 'accounts:settings' user.profile.id %}">Settings</a>
+        </div>
+
+    </div>
+{% endblock %}

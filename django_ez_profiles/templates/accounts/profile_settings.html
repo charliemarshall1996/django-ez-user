@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'core/base_authenticated.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <div class="card w-50 m-auto">
+      <div class="card-header">
+        <h2>Profile Page</h2>
+      </div>
+
+      <div class="card-body">
+        {% load crispy_forms_tags %}
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col m-auto">
+                    {{ user_form.honeypot }}
+                    {{ user_form.first_name|as_crispy_field }}
+                </div>
+                <div class="col m-auto">
+                    {{ user_form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m-auto">
+                    {{ profile_form.birth_date|as_crispy_field }}
+                </div>
+                <div class="col m-auto">
+                    {{ user_form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m-auto">
+                    <p><strong>Would you like to opt in for communication emails from Apptrack?</strong></p>
+                </div>
+                <div class="col m-auto">
+                    {{ profile_form.email_comms_opt_in|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    <div class="card-footer text-center">
+        <a class="btn btn-danger" href="{% url 'accounts:delete_account' %}">Delete Account</a>
+    </div>
+  </div>
+
+{% endblock %}
